@@ -1,6 +1,7 @@
 import { User, UserCheck, UserX } from "lucide-react";
+import type { Employee } from "../libs/types/employee";
 
-export default function DashboardStats() {
+export default function DashboardStats({employees}:{employees:Employee[]}) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
       <div className="border w-full max-w-82 p-4 rounded-lg border-gray-300 shadow ">
@@ -10,7 +11,7 @@ export default function DashboardStats() {
             <User />
           </span>
         </h1>
-        <p className="text-4xl">500</p>
+        <p className="text-4xl">{employees.length}</p>
       </div>
       <div className="border w-full max-w-80 p-4 rounded-lg border-gray-300 shadow ">
         <h1 className="flex justify-between font-roboto font-medium text-xl">
@@ -19,17 +20,16 @@ export default function DashboardStats() {
             <UserCheck />
           </span>
         </h1>
-        <p className="text-4xl">500</p>
+        <p className="text-4xl">{employees.filter((emp) => emp.active).length}</p>
       </div>
       <div className="border w-full max-w-80 p-4 rounded-lg border-gray-300 shadow ">
         <h1 className="flex justify-between font-roboto font-medium text-xl">
           Inactive
           <span>
-            {" "}
             <UserX />
           </span>
         </h1>
-        <p className="text-4xl">500</p>
+        <p className="text-4xl">{employees.filter((emp) => !emp.active).length}</p>
       </div>
     </div>
   );
