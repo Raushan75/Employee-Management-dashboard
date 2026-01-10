@@ -1,4 +1,20 @@
+import { useNavigate } from "react-router-dom";
+import { login } from "../libs/auth/auth";
+
 export default function Login() {
+
+  const navigate = useNavigate();
+
+   const handleLogin = (e: React.FormEvent) => {
+     e.preventDefault();
+
+     login({
+       name: "Raushan Kumar",
+       photo: "",
+     });
+
+     navigate("/dashboard");
+   };
   return (
     <div className="w-full max-w-7xl mx-auto h-screen flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6">
       <form className="w-120  border border-gray-300 shadow rounded text-center p-8 h-[55%] flex flex-col gap-4">
@@ -21,6 +37,7 @@ export default function Login() {
         <button
           type="submit"
           className="text-sm sm:text-base lg:text-xl py-1 font-poppins font-medium border border-blue-500 w-full max-w-32 mx-auto rounded-md text-blue-500 cursor-pointer"
+          onClick={handleLogin}
         >
           Sign in
         </button>
